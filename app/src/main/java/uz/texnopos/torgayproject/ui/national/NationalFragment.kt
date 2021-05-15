@@ -8,5 +8,6 @@ import uz.texnopos.torgayproject.R
 class NationalFragment: Fragment(R.layout.fragment_milliy){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 }

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_nature -> {
                     supportActionBar?.setTitle("Tabiyat")
+
                 }
                 R.id.menu_national -> {
                     supportActionBar?.setTitle("Milliy")
