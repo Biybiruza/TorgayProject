@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
-import uz.texnopos.torgayproject.data.model.Home
+import uz.texnopos.torgayproject.data.model.Arxeologiya
 import uz.texnopos.torgayproject.data.model.National
 
-@Database(entities = [Home::class, National::class],version = 1)
+@Database(entities = [Arxeologiya::class, National::class],version = 1)
 abstract class TorgayDataBase : RoomDatabase(){
 
     companion object{

@@ -4,18 +4,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_view.view.*
 import uz.texnopos.torgayproject.R
-import uz.texnopos.torgayproject.data.model.Home
+import uz.texnopos.torgayproject.data.model.Arxeologiya
 
 class HomeListAdapter : RecyclerView.Adapter<HomeListAdapter.HomeListViewHolder> () {
     inner class HomeListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun populateModel(milliy: Home){
-            itemView.tvTitle.text = milliy.id.toString()
+        fun populateModel(home: Arxeologiya){
+            itemView.tvTitle.text = home.name
+            val imageResName = "arxeolog${home.id}"
+            Glide
+                .with(itemView)
+                .load(itemView.context.resources.getIdentifier(imageResName,"dawable",itemView.context.packageName))
+                .centerCrop()
+                .into(itemView.imageView)
         }
     }
 
-    var models = listOf<Home>()
+    var models = listOf<Arxeologiya>()
         set(value) {
             field = value
             notifyDataSetChanged()
