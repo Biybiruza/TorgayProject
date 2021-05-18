@@ -18,7 +18,6 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
 
     private val nationalAdapter = NationalListAdapter(this)
     private lateinit var dao:NationalBaseDao
-    private lateinit var milliyFragment: MilliyDetailActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,7 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
     }
 
     override fun onItemClickListener(id: Int) {
+        val milliyFragment = MilliyDetailActivity()
         val bundle = Bundle()
         bundle.putInt(MilliyDetailActivity.MILLIY_ID, id)
 
