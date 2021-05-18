@@ -11,8 +11,14 @@ interface NationalBaseDao {
     @Query("SELECT * FROM Arxeologiya")
     fun getArxeologiya() : List<Arxeologiya>
 
+    @Query("SELECT * FROM Arxeologiya WHERE id = :id")
+    fun getArxeologiyaById(id: Int) : Arxeologiya
+
     @Query("SELECT * FROM Milliy")
     fun getNational() : List<National>
+
+    @Query("SELECT * FROM Milliy WHERE id = :id")
+    fun getNationalById(id: Int) : National
 
 
 }

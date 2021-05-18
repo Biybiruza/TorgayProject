@@ -3,6 +3,7 @@ package uz.texnopos.torgayproject.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 
 @Entity(tableName = "Arxeologiya")
 data class Arxeologiya(

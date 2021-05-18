@@ -7,18 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_view.view.*
 import uz.texnopos.torgayproject.R
+import uz.texnopos.torgayproject.TorgayItemClickListener
 import uz.texnopos.torgayproject.data.model.Arxeologiya
 
-class HomeListAdapter : RecyclerView.Adapter<HomeListAdapter.HomeListViewHolder> () {
+class HomeListAdapter(private val listener: TorgayItemClickListener) : RecyclerView.Adapter<HomeListAdapter.HomeListViewHolder> () {
     inner class HomeListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun populateModel(home: Arxeologiya){
             itemView.tvTitle.text = home.name
             val imageResName = "arxeolog${home.id}"
             Glide
                 .with(itemView)
-                .load(itemView.context.resources.getIdentifier(imageResName,"dawable",itemView.context.packageName))
+                .load(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
                 .centerCrop()
                 .into(itemView.imageView)
+
+            itemView.setOnClickListener {
+                listener.onItemClickListener(home.id)
+            }
         }
     }
 
