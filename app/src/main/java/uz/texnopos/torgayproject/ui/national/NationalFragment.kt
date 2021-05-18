@@ -1,18 +1,16 @@
 package uz.texnopos.torgayproject.ui.national
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
 import kotlinx.android.synthetic.main.fragment_milliy.*
+import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
-import uz.texnopos.torgayproject.ui.detail.MilliyDetailActivity
+import uz.texnopos.torgayproject.ui.detail.MilliyDetailFragment
 
 class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener{
 
@@ -30,6 +28,8 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = nationalAdapter
 
+        (activity as MainActivity?)?.setActionBarTitle("Milliy")
+
         setData()
     }
 
@@ -38,14 +38,14 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
     }
 
     override fun onItemClickListener(id: Int) {
-        val milliyFragment = MilliyDetailActivity()
+        val milliyFragment = MilliyDetailFragment()
         val bundle = Bundle()
-        bundle.putInt(MilliyDetailActivity.MILLIY_ID, id)
+        bundle.putInt(MilliyDetailFragment.MILLIY_ID, id)
 
         milliyFragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment, milliyFragment)
-            .addToBackStack(MilliyDetailActivity::class.simpleName).commit()
+            .addToBackStack(MilliyDetailFragment::class.simpleName).commit()
     }
 
 }

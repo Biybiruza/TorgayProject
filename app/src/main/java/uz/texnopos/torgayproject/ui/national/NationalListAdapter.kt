@@ -18,6 +18,7 @@ class NationalListAdapter (private val listener : TorgayItemClickListener):Recyc
             Glide
                 .with(itemView)
                 .load(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
+                .centerCrop()
                 .into(itemView.imageView)
 
             itemView.setOnClickListener {

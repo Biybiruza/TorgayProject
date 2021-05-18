@@ -1,60 +1,52 @@
 package uz.texnopos.torgayproject.ui.detail
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.view.MenuItem
+import android.view.View
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.item_view.*
-import kotlinx.android.synthetic.main.item_view.view.*
+import kotlinx.android.synthetic.main.fragment_detail.*
+import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.Arxeologiya
 
-class DetailActivity : AppCompatActivity() {
+class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
 
     companion object{
         const val Torgat_Id = "torgayId"
     }
 
     private var torgayId = 0
-    private lateinit var currentTorgay : Arxeologiya
+    private lateinit var currentHome : Arxeologiya
     private lateinit var dao                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       : NationalBaseDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        dao = TorgayDataBase.getInstance(requireContext()).dao()
+    }
 
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Arxeologiyaliq estelikler"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        torgayId = arguments?.getInt(Torgat_Id) ?: 0
+        currentHome = dao.getArxeologiyaById(torgayId)
 
-        dao = TorgayDataBase.getInstance(this).dao()
+        (activity as MainActivity?)?.setActionBarTitle(currentHome.name)
+        (activity as MainActivity?)?.setDisplayHomeAsUpEnabled(true)
 
-        torgayId = intent.getIntExtra(Torgat_Id, 0)
-        currentTorgay = dao.getArxeologiyaById(torgayId)
-
-        tvName.text = currentTorgay.name
+        tvName.text = currentHome.name
         tvText.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            Html.fromHtml(currentTorgay.text, Html.FROM_HTML_MODE_COMPACT)
+            Html.fromHtml(currentHome.text, Html.FROM_HTML_MODE_COMPACT)
         }else{
-            Html.fromHtml(currentTorgay.text)
+            Html.fromHtml(currentHome.text)
         }
         Glide
             .with(this)
-            .load(resources.getIdentifier("arxeolog$torgayId","drawable",packageName))
+            .load(resources.getIdentifier("arxeolog$torgayId","drawable",context?.packageName))
             .centerCrop()
             .into(imageDetail)
-
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            android.R.id.home -> finish()
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

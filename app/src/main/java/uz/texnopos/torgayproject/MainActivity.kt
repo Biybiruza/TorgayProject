@@ -1,9 +1,11 @@
 package uz.texnopos.torgayproject
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             var myFragment = Fragment()
             when (it.itemId) {
                 R.id.menu_home -> {
-                    supportActionBar?.setTitle("Arxeologiyaliq estelikler")
                     myFragment = HomeFragment()
                 }
                 R.id.menu_museum -> {
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.menu_national -> {
-                    supportActionBar?.setTitle("Milliy")
                     myFragment = NationalFragment()
                 }
                 R.id.menu_like -> {
@@ -51,4 +51,31 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun setDisplayHomeAsUpEnabled(boolean: Boolean){
+        supportActionBar?.setDisplayHomeAsUpEnabled(boolean)
+    }
+
+    fun setActionBarTitle(string:String?){
+        supportActionBar?.title = string
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.getItemId() == android.R.id.home) {
+            //Title bar back press triggers onBackPressed()
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount == 0){
+            finish()
+        } else {
+            supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(0).id,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+    }
+
 }

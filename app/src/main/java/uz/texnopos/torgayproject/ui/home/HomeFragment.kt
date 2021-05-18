@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_milliy.*
+import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
-import uz.texnopos.torgayproject.ui.detail.DetailActivity
+import uz.texnopos.torgayproject.ui.detail.HomeDetailFragment
+import uz.texnopos.torgayproject.ui.detail.MilliyDetailFragment
 
 class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
 
@@ -28,6 +30,8 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = homeAdapter
 
+        (activity as MainActivity?)?.setActionBarTitle("Arxeologiyaliq estelikler")
+
         setData()
 
     }
@@ -38,9 +42,13 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
     }
 
     override fun onItemClickListener(id:Int) {
-        val mIntent = Intent(requireActivity(),DetailActivity::class.java)
-        mIntent.putExtra(DetailActivity.Torgat_Id, id)
-        startActivity(mIntent)
+        val fragmentHome = HomeDetailFragment()
+        val bundle = Bundle()
+        bundle.putInt(HomeDetailFragment.Torgat_Id, id)
+        fragmentHome.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment, fragmentHome)
+            .addToBackStack(HomeDetailFragment::class.simpleName).commit()
     }
 
 }
