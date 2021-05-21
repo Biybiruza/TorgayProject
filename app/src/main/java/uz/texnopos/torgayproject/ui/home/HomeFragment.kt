@@ -9,7 +9,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.dialog_settings.view.*
 import kotlinx.android.synthetic.main.fragment_milliy.*
-import kotlinx.android.synthetic.main.fragment_milliy.toolBarActionTitle
 import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -35,10 +34,8 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
 
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = homeAdapter
-
-        toolBarActionTitle.text = "Arxeologiyaliq estelikler"
         setData()
-
+        toolBarAction.title = "Arxeologiyaliq estalikler"
 
         search.addTextChangedListener {
             val result : List<Arxeologiya> = dao.searchArxeologiyaByName("${it.toString()}%")

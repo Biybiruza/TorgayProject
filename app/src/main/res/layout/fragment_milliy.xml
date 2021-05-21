@@ -11,6 +11,7 @@
         android:id="@+id/toolBarAction"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,13 +19,14 @@
         android:background="@color/purple_700"
         app:menu="@menu/action_menu">
 
-        <TextView
-            android:id="@+id/toolBarActionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_marginStart="8dp"
-            android:textColorHighlight="@color/white"/>
+<!--        <TextView-->
+<!--            android:id="@+id/toolBarActionTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"-->
+<!--            android:textSize="18dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:textColorHighlight="@color/white"/>-->
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -38,11 +40,10 @@
         android:inputType="text"
         android:padding="8dp"
         android:hint="@string/search"
-        android:textColorHint="@color/black"
+        android:textSize="@dimen/margin_standard"
+        android:textColorHint="#A3000000"
         android:textColor="@color/black"
-        android:layout_marginStart="@dimen/margin_standard"
-        android:layout_marginEnd="@dimen/margin_standard"
-        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_margin="@dimen/margin_standard"
         android:background="@drawable/search_backgrount"
         android:drawableStart="@drawable/ic_baseline_search_24"/>
 
@@ -50,6 +51,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_standard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search"
         app:layout_constraintEnd_toEndOf="parent"

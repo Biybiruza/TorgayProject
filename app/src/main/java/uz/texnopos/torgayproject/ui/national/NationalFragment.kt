@@ -7,7 +7,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.dialog_settings.view.*
 import kotlinx.android.synthetic.main.fragment_milliy.*
-import kotlinx.android.synthetic.main.fragment_milliy.toolBarActionTitle
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
@@ -33,8 +32,8 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = nationalAdapter
 
-        toolBarActionTitle.text = "Milliy"
         setData()
+        toolBarAction.title = "Milliy"
 
         search.addTextChangedListener {
             val result: List<National> = dao.searchNationalByName("${it.toString()}%")

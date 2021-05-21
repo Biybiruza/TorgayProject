@@ -38,8 +38,7 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
 
         milliyId = arguments?.getInt(MILLIY_ID) ?: 0
         currentMilliy = dao.getNationalById(milliyId)
-
-        toolBarActionTitle.text = currentMilliy.name
+        toolBarDetail.title = currentMilliy.name
 
         tvName!!.text = currentMilliy.name
         tvText!!.text = Html.fromHtml(currentMilliy.text,Html.FROM_HTML_MODE_COMPACT)
