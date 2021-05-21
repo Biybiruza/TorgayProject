@@ -14,11 +14,15 @@ interface NationalBaseDao {
     @Query("SELECT * FROM Arxeologiya WHERE id = :id")
     fun getArxeologiyaById(id: Int) : Arxeologiya
 
+    @Query("SELECT * FROM Arxeologiya WHERE name like :word")
+    fun searchArxeologiyaByName(word: String) : List<Arxeologiya>
+
     @Query("SELECT * FROM Milliy")
     fun getNational() : List<National>
 
     @Query("SELECT * FROM Milliy WHERE id = :id")
     fun getNationalById(id: Int) : National
 
-
+    @Query("SELECT * FROM Milliy WHERE name like :word")
+    fun searchNationalByName(word: String) : List<National>
 }

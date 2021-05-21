@@ -4,19 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="400dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarAction"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/search"
+        android:background="@color/purple_700"
+        app:menu="@menu/action_menu">
+
+        <TextView
+            android:id="@+id/toolBarActionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_marginStart="8dp"
+            android:textColorHighlight="@color/white"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBarAction"
         app:layout_constraintEnd_toEndOf="parent"
         android:inputType="text"
         android:padding="8dp"
         android:hint="@string/search"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:layout_marginStart="@dimen/margin_standard"
         android:layout_marginEnd="@dimen/margin_standard"
         android:layout_marginTop="@dimen/margin_standard"

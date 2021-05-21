@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:minWidth="250dp"
+    android:minHeight="240dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="Sazlamalar"
+        android:textSize="@dimen/margin_standard"
+        android:textColor="@color/purple_700"
+        android:background="#FFA000"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        android:textColor="@color/black"
+        android:text="Tungı rejim "
+        android:layout_marginTop="@dimen/margin_standard"
+        android:background="#C8D0EA"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

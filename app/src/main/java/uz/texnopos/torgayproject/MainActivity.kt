@@ -1,7 +1,11 @@
 package uz.texnopos.torgayproject
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View.inflate
+import android.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -19,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        supportActionBar?.setTitle("Arxeologiyaliq estelikler")
         supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
             .commit()
         navView.setOnNavigationItemSelectedListener {
@@ -50,14 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-    }
-
-    fun setDisplayHomeAsUpEnabled(boolean: Boolean){
-        supportActionBar?.setDisplayHomeAsUpEnabled(boolean)
-    }
-
-    fun setActionBarTitle(string:String?){
-        supportActionBar?.title = string
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

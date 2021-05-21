@@ -1,20 +1,19 @@
 package uz.texnopos.torgayproject.ui.national
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.dialog_settings.view.*
 import kotlinx.android.synthetic.main.fragment_milliy.*
-import uz.texnopos.torgayproject.MainActivity
+import kotlinx.android.synthetic.main.fragment_milliy.toolBarActionTitle
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
+import uz.texnopos.torgayproject.data.model.National
 import uz.texnopos.torgayproject.ui.detail.MilliyDetailFragment
 
 class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener{
@@ -34,10 +33,41 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = nationalAdapter
 
-        (activity as MainActivity?)?.setActionBarTitle("Milliy")
-        (activity as MainActivity?)?.setDisplayHomeAsUpEnabled(false)
-
+        toolBarActionTitle.text = "Milliy"
         setData()
+
+        search.addTextChangedListener {
+            val result: List<National> = dao.searchNationalByName("${it.toString()}%")
+            nationalAdapter.models = result
+        }
+
+        toolBarAction.setOnMenuItemClickListener {
+            val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            when(it.itemId){
+                R.id.about -> {
+
+                    true
+                }
+                R.id.settings ->{
+                    val dialog = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_settings,null)
+                    val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext()).setView(dialog).show()
+                    dialog.switch_settings.setOnCheckedChangeListener{buttonView, isChecked ->
+                        if(isChecked){
+                            Toast.makeText(requireContext(),"janıq",Toast.LENGTH_LONG).show()
+                            alertDialog.dismiss()
+                        }else{
+                            Toast.makeText(requireContext(),"óshik",Toast.LENGTH_LONG).show()
+                            alertDialog.dismiss()
+                        }
+                    }
+                    true
+                }
+                else ->{
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
+
     }
 
     fun setData(){
@@ -54,22 +84,4 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
             .replace(R.id.nav_host_fragment, milliyFragment)
             .addToBackStack(MilliyDetailFragment::class.simpleName).commit()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.action_menu,menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.about -> {
-                Toast.makeText(requireContext(),"basildi", Toast.LENGTH_LONG).show()
-            }
-            R.id.settings ->{
-                Toast.makeText(requireContext(),"basildi", Toast.LENGTH_LONG).show()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
 }

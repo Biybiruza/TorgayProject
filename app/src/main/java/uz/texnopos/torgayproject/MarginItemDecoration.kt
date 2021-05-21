@@ -13,7 +13,7 @@ class MarginItemDecoration(private val spaceSize:Int) : RecyclerView.ItemDecorat
         state: RecyclerView.State
     ) {
         with(outRect){
-            if (parent.getChildAdapterPosition(view) == 0){
+            if (parent.getChildAdapterPosition(view) in 0 .. 1){
                 top = spaceSize
             }
             bottom = spaceSize
