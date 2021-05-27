@@ -1,21 +1,15 @@
 package uz.texnopos.torgayproject
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View.inflate
-import android.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import uz.texnopos.torgayproject.ui.home.HomeFragment
+import uz.texnopos.torgayproject.ui.muzey.MuzeyFragment
 import uz.texnopos.torgayproject.ui.national.NationalFragment
+import uz.texnopos.torgayproject.ui.tabiyat.TabiyatFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,10 +28,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_museum -> {
                     supportActionBar?.setTitle("Muzeyler")
+                    myFragment = MuzeyFragment()
                 }
                 R.id.menu_nature -> {
                     supportActionBar?.setTitle("Tabiyat")
-
+                    myFragment = TabiyatFragment()
                 }
                 R.id.menu_national -> {
                     myFragment = NationalFragment()
@@ -50,9 +45,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, myFragment)
                 .commit()
             return@setOnNavigationItemSelectedListener true
-
         }
+    }
+    fun setDisplayHomeAsUpEnabled(boolean: Boolean){
+        supportActionBar?.setDisplayHomeAsUpEnabled(boolean)
+    }
 
+    fun setActionBarTitle(string: String?){
+        supportActionBar?.title = string
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

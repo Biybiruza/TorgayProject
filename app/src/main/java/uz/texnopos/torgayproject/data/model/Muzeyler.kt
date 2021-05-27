@@ -4,10 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Milliy")
-data class National (
+@Entity(tableName = "Muzeyler")
+data class Muzeyler (
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name") val name:String,
-    @ColumnInfo(name = "text") val text:String,
-    @ColumnInfo(name = "isFavorite") val isFavorite: Int
+    @ColumnInfo(name = "text") val text:String
 )
