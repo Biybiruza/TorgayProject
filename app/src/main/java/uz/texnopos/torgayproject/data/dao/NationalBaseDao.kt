@@ -2,6 +2,7 @@ package uz.texnopos.torgayproject.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Update
 import uz.texnopos.torgayproject.data.model.Arxeologiya
 import uz.texnopos.torgayproject.data.model.Muzeyler
 import uz.texnopos.torgayproject.data.model.National
@@ -19,6 +20,12 @@ interface NationalBaseDao {
 
     @Query("SELECT * FROM Arxeologiya WHERE name like :word")
     fun searchArxeologiyaByName(word: String) : List<Arxeologiya>
+
+    @Query("SELECT * FROM Arxeologiya WHERE isFavorite = 1")
+    fun getFavorite() : List<Arxeologiya>
+
+    @Update
+    fun updateArxeologiya(arxeologiya: Arxeologiya)
 
     //Milliy
     @Query("SELECT * FROM Milliy")

@@ -3,10 +3,12 @@ package uz.texnopos.torgayproject.ui.national
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.dialog_settings.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_milliy.*
+import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
@@ -29,6 +31,9 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        if((requireActivity() as MainActivity).nav_view.selectedItemId != R.id.menu_national)
+//            (requireActivity() as MainActivity).nav_view.selectedItemId = R.id.menu_national
+
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = nationalAdapter
 
@@ -41,24 +46,10 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
         }
 
         toolBarAction.setOnMenuItemClickListener {
-            val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
             when(it.itemId){
                 R.id.about -> {
-
-                    true
-                }
-                R.id.settings ->{
-                    val dialog = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_settings,null)
-                    val alertDialog = androidx.appcompat.app.AlertDialog.Builder(requireContext()).setView(dialog).show()
-                    dialog.switch_settings.setOnCheckedChangeListener{buttonView, isChecked ->
-                        if(isChecked){
-                            Toast.makeText(requireContext(),"janıq",Toast.LENGTH_LONG).show()
-                            alertDialog.dismiss()
-                        }else{
-                            Toast.makeText(requireContext(),"óshik",Toast.LENGTH_LONG).show()
-                            alertDialog.dismiss()
-                        }
-                    }
+                    val dialog = LayoutInflater.from(requireContext()).inflate(R.layout.torgay_info,null)
+                    val alertDialog = AlertDialog.Builder(requireContext()).setView(dialog).show()
                     true
                 }
                 else ->{
@@ -77,7 +68,6 @@ class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListen
         val milliyFragment = MilliyDetailFragment()
         val bundle = Bundle()
         bundle.putInt(MilliyDetailFragment.MILLIY_ID, id)
-
         milliyFragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment, milliyFragment)

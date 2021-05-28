@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.activity_main.*
 import uz.texnopos.torgayproject.ui.home.HomeFragment
 import uz.texnopos.torgayproject.ui.muzey.MuzeyFragment
 import uz.texnopos.torgayproject.ui.national.NationalFragment
@@ -18,58 +18,61 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
+            .addToBackStack(HomeFragment::class.java.simpleName)
             .commit()
         navView.setOnNavigationItemSelectedListener {
-            val myBundle = Bundle()
-            var myFragment = Fragment()
             when (it.itemId) {
                 R.id.menu_home -> {
-                    myFragment = HomeFragment()
+                    if (supportFragmentManager.backStackEntryCount > 1)
+                    supportFragmentManager
+                        .popBackStack(supportFragmentManager.getBackStackEntryAt(1).id,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
+                      //  .addToBackStack(HomeFragment::class.java.simpleName)
+                        .commit()
                 }
                 R.id.menu_museum -> {
-                    supportActionBar?.setTitle("Muzeyler")
-                    myFragment = MuzeyFragment()
+                    if (supportFragmentManager.backStackEntryCount > 1)
+                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, MuzeyFragment())
+                        .addToBackStack(MuzeyFragment::class.java.simpleName)
+                        .commit()
                 }
                 R.id.menu_nature -> {
-                    supportActionBar?.setTitle("Tabiyat")
-                    myFragment = TabiyatFragment()
+                    if (supportFragmentManager.backStackEntryCount > 1)
+                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, TabiyatFragment())
+                        .addToBackStack(TabiyatFragment::class.java.simpleName)
+                        .commit()
                 }
                 R.id.menu_national -> {
-                    myFragment = NationalFragment()
+                    if (supportFragmentManager.backStackEntryCount > 1)
+                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, NationalFragment())
+                        .addToBackStack(NationalFragment::class.java.simpleName)
+                        .commit()
                 }
                 R.id.menu_like -> {
                     supportActionBar?.setTitle("Saylandilar")
                 }
                 else -> return@setOnNavigationItemSelectedListener false
             }
-            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, myFragment)
-                .commit()
             return@setOnNavigationItemSelectedListener true
         }
     }
-    fun setDisplayHomeAsUpEnabled(boolean: Boolean){
-        supportActionBar?.setDisplayHomeAsUpEnabled(boolean)
-    }
-
-    fun setActionBarTitle(string: String?){
-        supportActionBar?.title = string
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.getItemId() == android.R.id.home) {
-            //Title bar back press triggers onBackPressed()
-            onBackPressed()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount == 0){
+        if(supportFragmentManager.backStackEntryCount == 1){
             finish()
         } else {
-            supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(0).id,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            supportFragmentManager.popBackStackImmediate()
+            if (supportFragmentManager.backStackEntryCount == 1) {
+                if (nav_view.selectedItemId != R.id.menu_home)
+                nav_view.selectedItemId = R.id.menu_home
+            }
         }
     }
 

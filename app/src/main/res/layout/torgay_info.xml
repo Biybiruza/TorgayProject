@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,8 +15,11 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="16dp"
         android:text="@string/info"
-        
+        android:textColorLink="@color/purple_700"
         android:textSize="@dimen/margin_standard"
-        android:textColor="@color/purple_700"/>
+        android:textColor="@color/black"
+        android:autoLink="web"
+        android:clickable="true"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

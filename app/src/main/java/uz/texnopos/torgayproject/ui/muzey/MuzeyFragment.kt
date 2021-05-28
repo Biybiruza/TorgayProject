@@ -1,10 +1,12 @@
 package uz.texnopos.torgayproject.ui.muzey
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.fragment_tabiyat.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_milliy.*
 import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -26,11 +28,27 @@ class MuzeyFragment: Fragment(R.layout.fragment_milliy), TorgayItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        if((requireActivity() as MainActivity).nav_view.selectedItemId != R.id.menu_museum)
+//            (requireActivity() as MainActivity).nav_view.selectedItemId = R.id.menu_museum
+
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = muzeyAdapter
         toolBarAction.title = "Muzeyler"
 
         setData()
+
+        toolBarAction.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.about -> {
+                    val dialog = LayoutInflater.from(requireContext()).inflate(R.layout.torgay_info,null)
+                    val alertDialog = AlertDialog.Builder(requireContext()).setView(dialog).show()
+                    true
+                }
+                else ->{
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
     }
 
     fun setData(){
@@ -39,8 +57,7 @@ class MuzeyFragment: Fragment(R.layout.fragment_milliy), TorgayItemClickListener
     }
 
     override fun onItemClickListener(id: Int){
-        val fragmentMuzey =
-            MuzeyDetailFragment()
+        val fragmentMuzey = MuzeyDetailFragment()
         val bundle = Bundle()
         bundle.putInt(MuzeyDetailFragment.Muzey_Id,id)
         fragmentMuzey.arguments = bundle
