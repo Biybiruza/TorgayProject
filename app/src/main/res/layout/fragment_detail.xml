@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/purple_700"
+        android:background="@color/colorPrimary"
         app:menu="@menu/detail_menu"
         android:elevation="4dp">
 
@@ -40,6 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/search_backgrount"
                 android:layout_margin="@dimen/margin_standard"/>
 
             <TextView
@@ -51,8 +52,8 @@
                 app:layout_constraintTop_toBottomOf="@id/imageDetail"
                 android:layout_marginTop="4dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:background="#D7DAEC"
+                android:textColor="@color/textColor"
+                android:background="@color/textBackground"
                 android:textSize="18dp"
                 android:text="Shilpiq"
                 android:padding="8dp"
@@ -68,8 +69,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tvName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="Shilpiq"
-                android:textColor="@color/black"
-                android:background="#D7DAEC"
+                android:textColor="@color/textColor"
+                android:background="@color/textBackground"
                 android:padding="8dp"
                 android:layout_marginBottom="?attr/actionBarSize"
                 android:layout_marginStart="@dimen/margin_standard"

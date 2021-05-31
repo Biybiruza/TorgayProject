@@ -15,11 +15,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="16dp"
         android:text="@string/info"
-        android:textColorLink="@color/purple_700"
-        android:textSize="@dimen/margin_standard"
-        android:textColor="@color/black"
-        android:autoLink="web"
-        android:clickable="true"
-        android:focusable="true" />
+        android:textColorLink="@color/colorAccent"
+        android:textSize="18sp"
+        android:linksClickable="true"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

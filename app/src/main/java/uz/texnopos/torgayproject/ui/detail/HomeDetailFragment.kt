@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -50,6 +52,14 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
             // back button pressed
         }
 
+        toolBarDetail.menu.findItem(R.id.favorite).setIcon(
+            if (currentHome.isFavorite == 1) {
+                R.drawable.ic_baseline_bookmark_24
+            } else {
+                R.drawable.ic_baseline_bookmark_border_24
+            }
+        )
+
         toolBarDetail.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.share -> {
@@ -60,6 +70,13 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                     true
                 }
                 R.id.favorite -> {
+                    currentHome.isFavorite = 1 - currentHome.isFavorite
+                    dao.updateArxeologiya(currentHome)
+                    if (currentHome.isFavorite == 1) {
+                        it.setIcon(R.drawable.ic_baseline_bookmark_24)
+                    } else {
+                        it.setIcon(R.drawable.ic_baseline_bookmark_border_24)
+                    }
                     true
                 }
                 else -> {
