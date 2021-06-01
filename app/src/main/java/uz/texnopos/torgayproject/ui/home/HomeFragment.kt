@@ -1,14 +1,10 @@
 package uz.texnopos.torgayproject.ui.home
 
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_milliy.*
-import kotlinx.android.synthetic.main.torgay_info.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
@@ -16,6 +12,7 @@ import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.Arxeologiya
 import uz.texnopos.torgayproject.ui.detail.HomeDetailFragment
+import uz.texnopos.torgayproject.ui.info.InfoFragment
 
 class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
 
@@ -43,10 +40,9 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
         toolBarAction.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.about -> {
-                    val dialog = LayoutInflater.from(requireContext()).inflate(R.layout.torgay_info,null)
-                    val alertDialog = AlertDialog.Builder(requireContext()).setView(dialog).show()
-//                    textViewInfo.movementMethod = LinkMovementMethod.getInstance()
-                    Toast.makeText(requireContext(),"basildi", Toast.LENGTH_LONG).show()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.nav_host_fragment, InfoFragment())
+                        .addToBackStack(InfoFragment::class.simpleName).commit()
                     // do something
                     true
                 }
