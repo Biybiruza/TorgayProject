@@ -52,5 +52,7 @@ class MuzeyDetailFragment: Fragment(R.layout.fragment_detail) {
             (activity as MainActivity?)?.onBackPressed()
             // back button pressed
         }
+
+
     }
 }

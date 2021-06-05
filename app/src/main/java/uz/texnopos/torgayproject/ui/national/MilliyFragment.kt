@@ -14,7 +14,7 @@ import uz.texnopos.torgayproject.data.model.National
 import uz.texnopos.torgayproject.ui.detail.MilliyDetailFragment
 import uz.texnopos.torgayproject.ui.info.InfoFragment
 
-class NationalFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener{
+class MilliyFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener{
 
     private val nationalAdapter = NationalListAdapter(this)
     private lateinit var dao:NationalBaseDao

@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -16,6 +14,8 @@ import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.Arxeologiya
+import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
+import kotlin.properties.Delegates
 
 class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
 
@@ -25,7 +25,8 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
 
     private var torgayId = 0
     private lateinit var currentHome : Arxeologiya
-    private lateinit var dao                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       : NationalBaseDao
+    private lateinit var dao: NationalBaseDao
+    var number :Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,8 +71,9 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                     true
                 }
                 R.id.favorite -> {
+                    number = 1
                     currentHome.isFavorite = 1 - currentHome.isFavorite
-                    dao.updateArxeologiya(currentHome)
+                    dao.updateMilliy(currentHome)
                     if (currentHome.isFavorite == 1) {
                         it.setIcon(R.drawable.ic_baseline_bookmark_24)
                     } else {

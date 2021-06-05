@@ -14,18 +14,18 @@ import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.National
-
+import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
 
 class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
 
     companion object{
         const val MILLIY_ID = "milliy_id"
     }
-    private var doubleBackToExit = false
 
     private var milliyId = 0
     private lateinit var dao: NationalBaseDao
     private lateinit var currentMilliy: National
+    var number = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +53,11 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
             // back button pressed
         }
 
+        if (currentMilliy.isFavorite == 0){
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_border_24)
+        }else{
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_24)
+        }
 
         toolBarDetail.setOnMenuItemClickListener {
             when(it.itemId){
@@ -64,6 +69,14 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
                     true
                 }
                 R.id.favorite -> {
+                    number = 2
+                    currentMilliy.isFavorite = 1 - currentMilliy.isFavorite
+                    dao.updateMilliy(currentMilliy)
+                    if (currentMilliy.isFavorite == 0){
+                        it.setIcon(R.drawable.ic_baseline_bookmark_border_24)
+                    }else{
+                        it.setIcon(R.drawable.ic_baseline_bookmark_24)
+                    }
                     true
                 }
                 else -> {

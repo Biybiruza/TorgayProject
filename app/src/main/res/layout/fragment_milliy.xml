@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:titleTextColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -20,7 +20,6 @@ class HomeListAdapter(private val listener: TorgayItemClickListener) : RecyclerV
                 .load(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
                 .centerCrop()
                 .into(itemView.imageView)
-
             itemView.setOnClickListener {
                 listener.onItemClickListener(home.id)
             }
@@ -32,7 +31,6 @@ class HomeListAdapter(private val listener: TorgayItemClickListener) : RecyclerV
             field = value
             notifyDataSetChanged()
         }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeListViewHolder {
         val itemView =  LayoutInflater.from(parent.context).inflate(R.layout.item_view,parent,false)

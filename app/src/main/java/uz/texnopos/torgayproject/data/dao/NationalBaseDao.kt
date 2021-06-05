@@ -22,10 +22,10 @@ interface NationalBaseDao {
     fun searchArxeologiyaByName(word: String) : List<Arxeologiya>
 
     @Query("SELECT * FROM Arxeologiya WHERE isFavorite = 1")
-    fun getFavorite() : List<Arxeologiya>
+    fun getFavoriteArxeologiya() : List<Arxeologiya>
 
     @Update
-    fun updateArxeologiya(arxeologiya: Arxeologiya)
+    fun updateMilliy(arxeologiya: Arxeologiya)
 
     //Milliy
     @Query("SELECT * FROM Milliy")
@@ -36,6 +36,12 @@ interface NationalBaseDao {
 
     @Query("SELECT * FROM Milliy WHERE name like :word")
     fun searchNationalByName(word: String) : List<National>
+
+    @Query("SELECT * FROM Milliy WHERE isFavorite = 1")
+    fun getFavoriteNational() : List<National>
+
+    @Update
+    fun updateMilliy(milliy: National)
 
     //Muzey
     @Query("SELECT * FROM Muzeyler")

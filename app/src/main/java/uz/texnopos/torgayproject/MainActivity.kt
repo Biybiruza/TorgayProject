@@ -1,23 +1,28 @@
 package uz.texnopos.torgayproject
 
 import android.os.Bundle
-import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_main.*
+import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
 import uz.texnopos.torgayproject.ui.home.HomeFragment
 import uz.texnopos.torgayproject.ui.muzey.MuzeyFragment
-import uz.texnopos.torgayproject.ui.national.NationalFragment
+import uz.texnopos.torgayproject.ui.national.MilliyFragment
 import uz.texnopos.torgayproject.ui.tabiyat.TabiyatFragment
 
 class MainActivity : AppCompatActivity() {
+
+    val homeFragment = HomeFragment()
+    val muzeyFragment = MuzeyFragment()
+    val nationalFragment = MilliyFragment()
+    val tabiyatFragment = TabiyatFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
+        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
             .addToBackStack(HomeFragment::class.java.simpleName)
             .commit()
         navView.setOnNavigationItemSelectedListener {
@@ -27,15 +32,15 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager
                         .popBackStack(supportFragmentManager.getBackStackEntryAt(1).id,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
-                      //  .addToBackStack(HomeFragment::class.java.simpleName)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
+                        .addToBackStack(HomeFragment::class.java.simpleName)
                         .commit()
                 }
                 R.id.menu_museum -> {
                     if (supportFragmentManager.backStackEntryCount > 1)
                     supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, MuzeyFragment())
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, muzeyFragment)
                         .addToBackStack(MuzeyFragment::class.java.simpleName)
                         .commit()
                 }
@@ -43,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     if (supportFragmentManager.backStackEntryCount > 1)
                     supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, TabiyatFragment())
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, tabiyatFragment)
                         .addToBackStack(TabiyatFragment::class.java.simpleName)
                         .commit()
                 }
@@ -51,12 +56,18 @@ class MainActivity : AppCompatActivity() {
                     if (supportFragmentManager.backStackEntryCount > 1)
                     supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
                         FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, NationalFragment())
-                        .addToBackStack(NationalFragment::class.java.simpleName)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, nationalFragment)
+                        .addToBackStack(MilliyFragment::class.java.simpleName)
                         .commit()
                 }
                 R.id.menu_like -> {
-                    supportActionBar?.setTitle("Saylandilar")
+                    if(supportFragmentManager.backStackEntryCount > 1)
+                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment,ArxeologiyaFavorite())
+                        .addToBackStack(ArxeologiyaFavorite::class.simpleName)
+                        .commit()
                 }
                 else -> return@setOnNavigationItemSelectedListener false
             }

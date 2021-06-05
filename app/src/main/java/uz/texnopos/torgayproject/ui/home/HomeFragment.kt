@@ -2,9 +2,13 @@ package uz.texnopos.torgayproject.ui.home
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_milliy.*
+import kotlinx.android.synthetic.main.item_view.*
+import uz.texnopos.torgayproject.MainActivity
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
@@ -26,7 +30,6 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = homeAdapter
         setData()
