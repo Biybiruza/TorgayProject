@@ -25,7 +25,6 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
     private var milliyId = 0
     private lateinit var dao: NationalBaseDao
     private lateinit var currentMilliy: National
-    var number = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +68,6 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
                     true
                 }
                 R.id.favorite -> {
-                    number = 2
                     currentMilliy.isFavorite = 1 - currentMilliy.isFavorite
                     dao.updateMilliy(currentMilliy)
                     if (currentMilliy.isFavorite == 0){

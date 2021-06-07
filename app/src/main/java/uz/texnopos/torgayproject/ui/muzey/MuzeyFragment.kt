@@ -2,6 +2,7 @@ package uz.texnopos.torgayproject.ui.muzey
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_milliy.*
 import uz.texnopos.torgayproject.MarginItemDecoration
@@ -9,6 +10,8 @@ import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
+import uz.texnopos.torgayproject.data.model.Muzeyler
+import uz.texnopos.torgayproject.data.model.National
 import uz.texnopos.torgayproject.ui.detail.MuzeyDetailFragment
 import uz.texnopos.torgayproject.ui.info.InfoFragment
 
@@ -33,6 +36,11 @@ class MuzeyFragment: Fragment(R.layout.fragment_milliy), TorgayItemClickListener
         toolBarAction.title = "Muzeyler"
 
         setData()
+
+        search.addTextChangedListener {
+            val result: List<Muzeyler> = dao.searchMuzeyByName("${it.toString()}%")
+            muzeyAdapter.models = result
+        }
 
         toolBarAction.setOnMenuItemClickListener {
             when(it.itemId){

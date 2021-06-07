@@ -50,10 +50,16 @@ interface NationalBaseDao {
     @Query("SELECT * FROM Muzeyler WHERE id = :id")
     fun getMuzeylerById(id: Int): Muzeyler
 
+    @Query("SELECT * FROM Muzeyler WHERE name like :word")
+    fun searchMuzeyByName(word: String) : List<Muzeyler>
+
     //Tábiyat
     @Query("SELECT * FROM Tabiyat")
     fun getTabiyat() : List<Tabiyat>
 
     @Query("SELECT * FROM Tabiyat WHERE id = :id")
     fun getTabiyatById(id: Int): Tabiyat
+
+    @Query("SELECT * FROM Tabiyat WHERE name like :word")
+    fun searchTabiyatByName(word: String) : List<Tabiyat>
 }
