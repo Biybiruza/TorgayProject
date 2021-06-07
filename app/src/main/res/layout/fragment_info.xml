@@ -27,7 +27,7 @@
         android:padding="@dimen/margin_standard"
         android:layout_margin="@dimen/margin_standard"
         android:text="@string/info"
-        android:textColorLink="@color/colorAccent"
+        android:textColorLink="@color/colorAccentLink"
         android:textSize="18sp"
         android:linksClickable="true"
         android:textColor="@color/textColor"
