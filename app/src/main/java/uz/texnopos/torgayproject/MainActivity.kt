@@ -23,50 +23,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
-            .addToBackStack(HomeFragment::class.java.simpleName)
+            .addToBackStack(HomeFragment::class.java.simpleName + "$")
             .commit()
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> {
-                    if (supportFragmentManager.backStackEntryCount > 1)
-                    supportFragmentManager
-                        .popBackStack(supportFragmentManager.getBackStackEntryAt(1).id,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
-                        .addToBackStack(HomeFragment::class.java.simpleName)
+                        .addToBackStack(HomeFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_museum -> {
-                    if (supportFragmentManager.backStackEntryCount > 1)
-                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, muzeyFragment)
-                        .addToBackStack(MuzeyFragment::class.java.simpleName)
+                        .addToBackStack(MuzeyFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_nature -> {
-                    if (supportFragmentManager.backStackEntryCount > 1)
-                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, tabiyatFragment)
-                        .addToBackStack(TabiyatFragment::class.java.simpleName)
+                        .addToBackStack(TabiyatFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_national -> {
-                    if (supportFragmentManager.backStackEntryCount > 1)
-                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, nationalFragment)
-                        .addToBackStack(MilliyFragment::class.java.simpleName)
+                        .addToBackStack(MilliyFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_like -> {
-                    if(supportFragmentManager.backStackEntryCount > 1)
-                    supportFragmentManager.popBackStackImmediate(supportFragmentManager.getBackStackEntryAt(1).id,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
                     supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment,ArxeologiyaFavorite())
-                        .addToBackStack(ArxeologiyaFavorite::class.simpleName)
+                        .addToBackStack(ArxeologiyaFavorite::class.simpleName + "$")
                         .commit()
                 }
                 else -> return@setOnNavigationItemSelectedListener false
@@ -76,14 +59,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if(supportFragmentManager.backStackEntryCount == 1){
+        if (supportFragmentManager.backStackEntryCount == 1) {
             finish()
-        } else {
-            supportFragmentManager.popBackStackImmediate()
-            if (supportFragmentManager.backStackEntryCount == 1) {
-                if (nav_view.selectedItemId != R.id.menu_home)
+        } else if (
+            supportFragmentManager
+                .getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1)
+                .name.toString().endsWith("$")
+        ) {
+            if (supportFragmentManager.backStackEntryCount==2 &&
+                supportFragmentManager.getBackStackEntryAt(0).name.toString() == HomeFragment::class.simpleName+"$" &&
+                supportFragmentManager.getBackStackEntryAt(1).name.toString() == HomeFragment::class.simpleName+"$") {
+                finish()
+                return
+            }
+            supportFragmentManager
+                .popBackStackImmediate(
+                    supportFragmentManager.getBackStackEntryAt(1).id,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE
+                )
+            if (supportFragmentManager.backStackEntryCount == 1 && nav_view.selectedItemId != R.id.menu_home) {
                 nav_view.selectedItemId = R.id.menu_home
             }
+        } else {
+            supportFragmentManager.popBackStackImmediate()
         }
     }
 }
