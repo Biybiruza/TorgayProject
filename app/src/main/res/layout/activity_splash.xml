@@ -7,15 +7,18 @@
     android:background="@color/white"
     tools:context=".splash.SplashActivity">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/splashActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/margin_standard"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/torgay"/>
+        app:lottie_fileName="texnopos-it-mektebi.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true">
+
+    </com.airbnb.lottie.LottieAnimationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

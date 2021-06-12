@@ -13,37 +13,32 @@ import uz.texnopos.torgayproject.ui.tabiyat.TabiyatFragment
 
 class MainActivity : AppCompatActivity() {
 
-    val homeFragment = HomeFragment()
-    val muzeyFragment = MuzeyFragment()
-    val nationalFragment = MilliyFragment()
-    val tabiyatFragment = TabiyatFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
+        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
             .addToBackStack(HomeFragment::class.java.simpleName + "$")
             .commit()
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, homeFragment)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, HomeFragment())
                         .addToBackStack(HomeFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_museum -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, muzeyFragment)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, MuzeyFragment())
                         .addToBackStack(MuzeyFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_nature -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, tabiyatFragment)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, TabiyatFragment())
                         .addToBackStack(TabiyatFragment::class.java.simpleName + "$")
                         .commit()
                 }
                 R.id.menu_national -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, nationalFragment)
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, MilliyFragment())
                         .addToBackStack(MilliyFragment::class.java.simpleName + "$")
                         .commit()
                 }
