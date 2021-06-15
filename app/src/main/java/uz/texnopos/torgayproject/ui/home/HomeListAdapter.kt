@@ -42,6 +42,4 @@ class HomeListAdapter(private val listener: TorgayItemClickListener) : RecyclerV
     override fun onBindViewHolder(holder: HomeListViewHolder, position: Int) {
         holder.populateModel(models[position])
     }
-
-
 }

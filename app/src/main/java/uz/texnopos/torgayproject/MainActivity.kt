@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_main.*
 import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
+import uz.texnopos.torgayproject.ui.favorite.FavoriteFragment
 import uz.texnopos.torgayproject.ui.home.HomeFragment
 import uz.texnopos.torgayproject.ui.muzey.MuzeyFragment
 import uz.texnopos.torgayproject.ui.national.MilliyFragment
@@ -43,13 +44,22 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                 }
                 R.id.menu_like -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment,ArxeologiyaFavorite())
-                        .addToBackStack(ArxeologiyaFavorite::class.simpleName + "$")
+                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment,FavoriteFragment())
+                        .addToBackStack(FavoriteFragment::class.simpleName + "$")
                         .commit()
                 }
                 else -> return@setOnNavigationItemSelectedListener false
             }
             return@setOnNavigationItemSelectedListener true
+        }
+    }
+
+    private fun onBackPressedFav(){
+        if(supportFragmentManager.backStackEntryCount == 0){
+            onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack(supportFragmentManager.getBackStackEntryAt(0).id,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
     }
 

@@ -3,7 +3,7 @@ package uz.texnopos.torgayproject.ui.favorite
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_favorite.*
+import kotlinx.android.synthetic.main.fragment_fav.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.TorgayItemClickListener
@@ -12,11 +12,7 @@ import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.ui.detail.HomeDetailFragment
 import uz.texnopos.torgayproject.ui.home.HomeListAdapter
 
-class ArxeologiyaFavorite : Fragment(R.layout.fragment_favorite),TorgayItemClickListener{
-
-    companion object{
-        const val FAVORITE_NUMBER = "favorite_number"
-    }
+class ArxeologiyaFavorite : Fragment(R.layout.fragment_fav),TorgayItemClickListener{
 
     lateinit var dao: NationalBaseDao
     private val homeAdapter = HomeListAdapter(this)
@@ -30,7 +26,6 @@ class ArxeologiyaFavorite : Fragment(R.layout.fragment_favorite),TorgayItemClick
         super.onViewCreated(view, savedInstanceState)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = homeAdapter
-        toolBarAction.title = "Saylandılar"
         setData()
     }
 

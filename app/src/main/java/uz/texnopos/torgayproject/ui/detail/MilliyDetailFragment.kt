@@ -14,7 +14,6 @@ import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.National
-import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
 
 class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
 
@@ -26,15 +25,10 @@ class MilliyDetailFragment : Fragment(R.layout.fragment_detail){
     private lateinit var dao: NationalBaseDao
     private lateinit var currentMilliy: National
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dao = TorgayDataBase.getInstance(requireContext()).dao()
-    }
-
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        dao = TorgayDataBase.getInstance(requireContext()).dao()
         milliyId = arguments?.getInt(MILLIY_ID) ?: 0
         currentMilliy = dao.getNationalById(milliyId)
         toolBarDetail.title = currentMilliy.name

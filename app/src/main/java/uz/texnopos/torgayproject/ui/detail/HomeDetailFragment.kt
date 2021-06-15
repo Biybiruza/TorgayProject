@@ -14,8 +14,6 @@ import uz.texnopos.torgayproject.R
 import uz.texnopos.torgayproject.data.TorgayDataBase
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.data.model.Arxeologiya
-import uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite
-import kotlin.properties.Delegates
 
 class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
 
@@ -26,7 +24,6 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
     private var torgayId = 0
     private lateinit var currentHome : Arxeologiya
     private lateinit var dao: NationalBaseDao
-    var number :Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +68,6 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                     true
                 }
                 R.id.favorite -> {
-                    number = 1
                     currentHome.isFavorite = 1 - currentHome.isFavorite
                     dao.updateMilliy(currentHome)
                     if (currentHome.isFavorite == 1) {
@@ -86,7 +82,5 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                 }
             }
         }
-
     }
-
 }
