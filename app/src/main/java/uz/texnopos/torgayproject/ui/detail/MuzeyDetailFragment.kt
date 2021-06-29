@@ -53,6 +53,5 @@ class MuzeyDetailFragment: Fragment(R.layout.fragment_detail) {
             // back button pressed
         }
 
-
     }
 }

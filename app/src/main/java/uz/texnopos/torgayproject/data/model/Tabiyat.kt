@@ -9,4 +9,4 @@ import androidx.room.PrimaryKey
       @PrimaryKey val id: Int,
       @ColumnInfo(name = "name") val name:String,
       @ColumnInfo(name = "text") val text:String
-)
+):ModelType(ModelType.TABIYAT_TYPE)

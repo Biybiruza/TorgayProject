@@ -11,4 +11,4 @@ data class Arxeologiya(
     @ColumnInfo(name = "name") val name:String,
     @ColumnInfo(name = "text") val text:String,
     @ColumnInfo(name = "isFavorite") var isFavorite: Int
-)
+):ModelType(ModelType.ARXEOLOGIYA_TYPE)

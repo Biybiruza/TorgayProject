@@ -1,5 +1,5 @@
 package uz.texnopos.torgayproject
 
 interface TorgayItemClickListener {
-    fun onItemClickListener(id: Int)
+    fun onItemClickListener(id: Int, type:Int)
 }

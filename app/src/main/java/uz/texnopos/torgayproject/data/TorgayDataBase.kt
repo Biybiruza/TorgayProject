@@ -10,7 +10,7 @@ import uz.texnopos.torgayproject.data.model.Muzeyler
 import uz.texnopos.torgayproject.data.model.National
 import uz.texnopos.torgayproject.data.model.Tabiyat
 
-@Database(entities = [Arxeologiya::class, National::class,Muzeyler::class,Tabiyat::class],version = 2)
+@Database(entities = [Arxeologiya::class, National::class,Muzeyler::class,Tabiyat::class],version = 3)
 abstract class TorgayDataBase : RoomDatabase(){
 
     companion object{

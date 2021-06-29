@@ -18,7 +18,7 @@ import uz.texnopos.torgayproject.data.model.Arxeologiya
 class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
 
     companion object{
-        const val Torgat_Id = "torgayId"
+        const val Torgay_Id = "torgayId"
     }
 
     private var torgayId = 0
@@ -33,7 +33,7 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        torgayId = arguments?.getInt(Torgat_Id) ?: 0
+        torgayId = arguments?.getInt(Torgay_Id) ?: 0
         currentHome = dao.getArxeologiyaById(torgayId)
         toolBarDetail.title = currentHome.name
 
