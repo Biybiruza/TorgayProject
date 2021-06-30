@@ -2,8 +2,11 @@ package uz.texnopos.torgayproject.ui.national
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_milliy.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -18,6 +21,7 @@ class MilliyFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener
 
     private val nationalAdapter = NationalListAdapter(this)
     private lateinit var dao:NationalBaseDao
+    private var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +31,7 @@ class MilliyFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        if((requireActivity() as MainActivity).nav_view.selectedItemId != R.id.menu_national)
-//            (requireActivity() as MainActivity).nav_view.selectedItemId = R.id.menu_national
+        navController = Navigation.findNavController(view)
 
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = nationalAdapter
@@ -45,9 +47,7 @@ class MilliyFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener
         toolBarAction.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.about -> {
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment, InfoFragment())
-                        .addToBackStack(InfoFragment::class.simpleName).commit()
+                    navController!!.navigate(R.id.action_menu_national_to_infoFragment)
                     true
                 }
                 else ->{
@@ -58,17 +58,12 @@ class MilliyFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener
 
     }
 
-    fun setData(){
+    private fun setData(){
         nationalAdapter.models = dao.getNational()
     }
 
     override fun onItemClickListener(id: Int) {
-        val milliyFragment = MilliyDetailFragment()
-        val bundle = Bundle()
-        bundle.putInt(MilliyDetailFragment.MILLIY_ID, id)
-        milliyFragment.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, milliyFragment)
-            .addToBackStack(MilliyDetailFragment::class.simpleName).commit()
+        val bundle = bundleOf(MilliyDetailFragment.MILLIY_ID to id)
+        navController!!.navigate(R.id.action_menu_national_to_milliyDetailFragment, bundle)
     }
 }

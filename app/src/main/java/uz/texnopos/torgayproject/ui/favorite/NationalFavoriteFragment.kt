@@ -2,7 +2,10 @@ package uz.texnopos.torgayproject.ui.favorite
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -16,6 +19,7 @@ import uz.texnopos.torgayproject.ui.national.NationalListAdapter
 class NationalFavoriteFragment() : Fragment(R.layout.fragment_favorite), TorgayItemClickListener {
     lateinit var dao: NationalBaseDao
     private val adapter = NationalListAdapter(this)
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,22 +28,18 @@ class NationalFavoriteFragment() : Fragment(R.layout.fragment_favorite), TorgayI
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = adapter
         setData()
     }
 
-    fun setData(){
+    private fun setData(){
         adapter.models = dao.getFavoriteNational()
     }
 
     override fun onItemClickListener(id: Int) {
-        val fragmentMilliy = MilliyDetailFragment()
-        val bundle = Bundle()
-        bundle.putInt(MilliyDetailFragment.MILLIY_ID, id)
-        fragmentMilliy.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragmentMilliy)
-            .addToBackStack(MilliyDetailFragment::class.simpleName).commit()
+        val bundle = bundleOf(MilliyDetailFragment.MILLIY_ID to id)
+        navController.navigate(R.id.action_nationalFavoriteFragment_to_milliyDetailFragment,bundle)
     }
 }

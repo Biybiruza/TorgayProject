@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="uz.texnopos.torgayproject.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_milliy">
+        <action
+            android:id="@+id/action_menu_home_to_homeDetailFragment"
+            app:destination="@id/homeDetailFragment" />
+        <action
+            android:id="@+id/action_menu_home_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_national"
+        android:name="uz.texnopos.torgayproject.ui.national.MilliyFragment"
+        android:label="MilliyFragment"
+        tools:layout="@layout/fragment_milliy">
+        <action
+            android:id="@+id/action_menu_national_to_milliyDetailFragment"
+            app:destination="@id/milliyDetailFragment" />
+        <action
+            android:id="@+id/action_menu_national_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_nature"
+        android:name="uz.texnopos.torgayproject.ui.tabiyat.TabiyatFragment"
+        android:label="TabiyatFragment"
+        tools:layout="@layout/fragment_milliy">
+        <action
+            android:id="@+id/action_menu_nature_to_tabiyatDetailFragment"
+            app:destination="@id/tabiyatDetailFragment" />
+        <action
+            android:id="@+id/action_menu_nature_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_museum"
+        android:name="uz.texnopos.torgayproject.ui.muzey.MuzeyFragment"
+        android:label="MuzeyFragment"
+        tools:layout="@layout/fragment_milliy">
+        <action
+            android:id="@+id/action_menu_museum_to_muzeyDetailFragment"
+            app:destination="@id/muzeyDetailFragment" />
+        <action
+            android:id="@+id/action_menu_museum_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeDetailFragment"
+        android:name="uz.texnopos.torgayproject.ui.detail.HomeDetailFragment"
+        android:label="HomeDetailFragment"
+        tools:layout="@layout/fragment_detail"/>
+    <fragment
+        android:id="@+id/milliyDetailFragment"
+        android:name="uz.texnopos.torgayproject.ui.detail.MilliyDetailFragment"
+        android:label="MilliyDetailFragment"
+        tools:layout="@layout/fragment_detail"/>
+    <fragment
+        android:id="@+id/tabiyatDetailFragment"
+        android:name="uz.texnopos.torgayproject.ui.detail.TabiyatDetailFragment"
+        android:label="TabiyatDetailFragment"
+        tools:layout="@layout/fragment_detail"/>
+    <fragment
+        android:id="@+id/muzeyDetailFragment"
+        android:name="uz.texnopos.torgayproject.ui.detail.MuzeyDetailFragment"
+        android:label="MuzeyDetailFragment"
+        tools:layout="@layout/fragment_detail"/>
+    <fragment
+        android:id="@+id/menu_like"
+        android:name="uz.texnopos.torgayproject.ui.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_view_pager">
+        <action
+            android:id="@+id/action_menu_like_to_nationalFavoriteFragment"
+            app:destination="@id/nationalFavoriteFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_arxeologiyaFavorite"
+            app:destination="@id/arxeologiyaFavorite" />
+        <action
+            android:id="@+id/action_menu_like_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/arxeologiyaFavorite"
+        android:name="uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite"
+        android:label="ArxeologiyaFavorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_arxeologiyaFavorite_to_homeDetailFragment"
+            app:destination="@id/homeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nationalFavoriteFragment"
+        android:name="uz.texnopos.torgayproject.ui.favorite.NationalFavoriteFragment"
+        android:label="NationalFavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_nationalFavoriteFragment_to_milliyDetailFragment"
+            app:destination="@id/milliyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="uz.texnopos.torgayproject.ui.info.InfoFragment"
+        android:label="InfoFragment"
+        tools:layout="@layout/fragment_info"/>
+</navigation>

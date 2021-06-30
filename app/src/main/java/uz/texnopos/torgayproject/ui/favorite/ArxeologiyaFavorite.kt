@@ -2,7 +2,10 @@ package uz.texnopos.torgayproject.ui.favorite
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -16,6 +19,7 @@ class ArxeologiyaFavorite : Fragment(R.layout.fragment_favorite),TorgayItemClick
 
     lateinit var dao: NationalBaseDao
     private val homeAdapter = HomeListAdapter(this)
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,22 +28,19 @@ class ArxeologiyaFavorite : Fragment(R.layout.fragment_favorite),TorgayItemClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = homeAdapter
         setData()
     }
 
-    fun setData(){
+    private fun setData(){
         homeAdapter.models = dao.getFavoriteArxeologiya()
     }
 
     override fun onItemClickListener(id: Int) {
-        val fragmentHome = HomeDetailFragment()
-        val bundle = Bundle()
-        bundle.putInt(HomeDetailFragment.Torgat_Id, id)
-        fragmentHome.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragmentHome)
-            .addToBackStack(HomeDetailFragment::class.simpleName).commit()
+        val bundle = bundleOf(HomeDetailFragment.Torgay_Id to id)
+        navController.navigate(R.id.action_arxeologiyaFavorite_to_homeDetailFragment,bundle)
+
     }
 }
