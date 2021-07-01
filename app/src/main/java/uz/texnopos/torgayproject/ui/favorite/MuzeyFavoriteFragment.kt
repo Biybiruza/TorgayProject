@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -19,12 +20,12 @@ class MuzeyFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemCli
 
     private lateinit var dao: NationalBaseDao
     private val adapter = MuzeyListAdapter(this)
-    private lateinit var navController: NavController
+    private var navController: NavController? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dao = TorgayDataBase.getInstance(requireContext()).dao()
-        navController = Navigation.findNavController(view)
+        navController = NavHostFragment.findNavController(this)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = adapter
         setData()
@@ -36,7 +37,7 @@ class MuzeyFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemCli
 
     override fun onItemClickListener(id: Int) {
         val bundle = bundleOf(MuzeyDetailFragment.Muzey_Id to id)
-        navController.navigate(R.id.action_menu_like_to_muzeyFavoriteFragment,bundle)
+        navController!!.navigate(R.id.action_menu_museum_to_muzeyDetailFragment,bundle)
     }
 
 }

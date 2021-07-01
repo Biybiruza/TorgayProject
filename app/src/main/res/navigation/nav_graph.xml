@@ -93,44 +93,41 @@
         <action
             android:id="@+id/action_menu_like_to_tabiyatFavoriteFragment"
             app:destination="@id/tabiyatFavoriteFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_homeDetailFragment"
+            app:destination="@id/homeDetailFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_milliyDetailFragment"
+            app:destination="@id/milliyDetailFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_tabiyatDetailFragment"
+            app:destination="@id/tabiyatDetailFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_muzeyDetailFragment"
+            app:destination="@id/muzeyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/arxeologiyaFavorite"
         android:name="uz.texnopos.torgayproject.ui.favorite.ArxeologiyaFavorite"
         android:label="ArxeologiyaFavorite"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/action_arxeologiyaFavorite_to_homeDetailFragment"
-            app:destination="@id/homeDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_favorite"/>
     <fragment
         android:id="@+id/nationalFavoriteFragment"
         android:name="uz.texnopos.torgayproject.ui.favorite.NationalFavoriteFragment"
         android:label="NationalFavoriteFragment"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/action_nationalFavoriteFragment_to_milliyDetailFragment"
-            app:destination="@id/milliyDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_favorite"/>
+
+    <fragment
+        android:id="@+id/muzeyFavoriteFragment"
+        android:name="uz.texnopos.torgayproject.ui.favorite.MuzeyFavoriteFragment"
+        android:label="MuzeyFavoriteFragment" />
+    <fragment
+        android:id="@+id/tabiyatFavoriteFragment"
+        android:name="uz.texnopos.torgayproject.ui.favorite.TabiyatFavoriteFragment"
+        android:label="TabiyatFavoriteFragment" />
     <fragment
         android:id="@+id/infoFragment"
         android:name="uz.texnopos.torgayproject.ui.info.InfoFragment"
         android:label="InfoFragment"
         tools:layout="@layout/fragment_info"/>
-    <fragment
-        android:id="@+id/muzeyFavoriteFragment"
-        android:name="uz.texnopos.torgayproject.ui.favorite.MuzeyFavoriteFragment"
-        android:label="MuzeyFavoriteFragment" >
-        <action
-            android:id="@+id/action_muzeyFavoriteFragment_to_muzeyDetailFragment"
-            app:destination="@id/muzeyDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/tabiyatFavoriteFragment"
-        android:name="uz.texnopos.torgayproject.ui.favorite.TabiyatFavoriteFragment"
-        android:label="TabiyatFavoriteFragment" >
-        <action
-            android:id="@+id/action_tabiyatFavoriteFragment_to_tabiyatDetailFragment"
-            app:destination="@id/tabiyatDetailFragment" />
-    </fragment>
 </navigation>

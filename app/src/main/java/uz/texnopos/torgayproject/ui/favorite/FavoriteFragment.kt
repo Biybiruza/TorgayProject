@@ -22,6 +22,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_view_pager) {
             when(position){
                 0 -> {tab.text = "Arxeologiya"}
                 1 -> {tab.text = "Milliy"}
+                2 -> tab.text = "Muzey"
+                3 -> tab.text = "Tábiyat"
             }
         }.attach()
     }

@@ -25,6 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolBarAction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:padding="4dp"
         app:tabTextColor="@color/black"
         app:tabSelectedTextColor="#FA1313"
         app:tabIndicatorColor="@color/black"/>

@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -18,13 +19,13 @@ import uz.texnopos.torgayproject.ui.tabiyat.TabiyatListAdapter
 class TabiyatFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemClickListener {
 
     private lateinit var dao: NationalBaseDao
-    private lateinit var navController: NavController
+    private var navController: NavController? = null
     private val adapter = TabiyatListAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dao = TorgayDataBase.getInstance(requireContext()).dao()
-        navController = Navigation.findNavController(view)
+        navController = NavHostFragment.findNavController(this)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = adapter
         setData()
@@ -36,6 +37,6 @@ class TabiyatFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemC
 
     override fun onItemClickListener(id: Int) {
         val bundle = bundleOf(TabiyatDetailFragment.Tabiyat_Id to id)
-        navController.navigate(R.id.action_menu_like_to_tabiyatFavoriteFragment,bundle)
+        navController!!.navigate(R.id.action_menu_nature_to_tabiyatDetailFragment,bundle)
     }
 }

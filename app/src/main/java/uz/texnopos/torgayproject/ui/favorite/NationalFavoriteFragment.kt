@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import uz.texnopos.torgayproject.MarginItemDecoration
 import uz.texnopos.torgayproject.R
@@ -19,7 +20,7 @@ import uz.texnopos.torgayproject.ui.national.NationalListAdapter
 class NationalFavoriteFragment() : Fragment(R.layout.fragment_favorite), TorgayItemClickListener {
     lateinit var dao: NationalBaseDao
     private val adapter = NationalListAdapter(this)
-    private lateinit var navController: NavController
+    private var navController: NavController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class NationalFavoriteFragment() : Fragment(R.layout.fragment_favorite), TorgayI
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
+        navController = NavHostFragment.findNavController(this)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = adapter
         setData()
@@ -40,6 +41,6 @@ class NationalFavoriteFragment() : Fragment(R.layout.fragment_favorite), TorgayI
 
     override fun onItemClickListener(id: Int) {
         val bundle = bundleOf(MilliyDetailFragment.MILLIY_ID to id)
-        navController.navigate(R.id.action_nationalFavoriteFragment_to_milliyDetailFragment,bundle)
+        navController!!.navigate(R.id.action_menu_national_to_milliyDetailFragment,bundle)
     }
 }
