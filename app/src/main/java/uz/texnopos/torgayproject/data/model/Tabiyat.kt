@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
  data class Tabiyat (
       @PrimaryKey val id: Int,
       @ColumnInfo(name = "name") val name:String,
-      @ColumnInfo(name = "text") val text:String
+      @ColumnInfo(name = "text") val text:String,
+      @ColumnInfo(name = "isFavorite") var isFavorite: Int
 )

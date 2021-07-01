@@ -55,7 +55,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/textColor"
                 android:background="@color/textBackground"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="Shilpiq"
                 android:padding="8dp"
                 android:layout_marginStart="@dimen/margin_standard"

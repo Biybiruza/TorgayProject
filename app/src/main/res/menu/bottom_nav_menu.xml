@@ -21,7 +21,7 @@
 
     <item
         android:id="@+id/menu_like"
-        android:icon="@drawable/ic_baseline_bookmark_border_24"
+        android:icon="@drawable/favorite"
         android:title="Saylandilar" />
 
 </menu>

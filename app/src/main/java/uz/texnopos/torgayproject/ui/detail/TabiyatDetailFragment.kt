@@ -1,5 +1,6 @@
 package uz.texnopos.torgayproject.ui.detail
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -50,5 +51,37 @@ class TabiyatDetailFragment: Fragment(R.layout.fragment_detail) {
         toolBarDetail.setNavigationOnClickListener {
             (activity as MainActivity?)?.onBackPressed()
         }
+
+        if (currentTabiyat.isFavorite == 0){
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_border_24)
+        }else{
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_24)
+        }
+
+        toolBarDetail.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.share -> {
+                    val share = Intent(Intent.ACTION_SEND)
+                    share.putExtra(Intent.EXTRA_TEXT, currentTabiyat.text)
+                    share.type = "text/plain"
+                    startActivity(Intent.createChooser(share, "Bólisiw"))
+                    true
+                }
+                R.id.favorite -> {
+                    currentTabiyat.isFavorite = 1 - currentTabiyat.isFavorite
+                    dao.updateTabiyat(currentTabiyat)
+                    if (currentTabiyat.isFavorite == 0){
+                        it.setIcon(R.drawable.ic_baseline_bookmark_border_24)
+                    }else{
+                        it.setIcon(R.drawable.ic_baseline_bookmark_24)
+                    }
+                    true
+                }
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
+
     }
 }

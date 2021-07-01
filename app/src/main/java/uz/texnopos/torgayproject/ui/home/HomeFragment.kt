@@ -32,8 +32,8 @@ class HomeFragment: Fragment(R.layout.fragment_milliy),TorgayItemClickListener {
         navController = Navigation.findNavController(view)
         recyclerView.addItemDecoration(MarginItemDecoration(16))
         recyclerView.adapter = homeAdapter
-        setData()
         toolBarAction.title = "Arxeologiyaliq estalikler"
+        setData()
 
         search.addTextChangedListener {
             val result : List<Arxeologiya> = dao.searchArxeologiyaByName("${it.toString()}%")

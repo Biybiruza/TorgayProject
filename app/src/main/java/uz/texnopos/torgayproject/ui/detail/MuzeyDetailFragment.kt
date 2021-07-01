@@ -1,5 +1,6 @@
 package uz.texnopos.torgayproject.ui.detail
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -48,11 +49,41 @@ class MuzeyDetailFragment: Fragment(R.layout.fragment_detail) {
             .centerCrop()
             .into(imageDetail)
 
+        if (currentMuzey.isFavorite == 1){
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_24)
+        } else {
+            toolBarDetail.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_bookmark_border_24)
+        }
+
         toolBarDetail.setNavigationOnClickListener{
             (activity as MainActivity?)?.onBackPressed()
             // back button pressed
         }
 
+        toolBarDetail.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.share -> {
+                    val share = Intent(Intent.ACTION_SEND)
+                    share.putExtra(Intent.EXTRA_TEXT, currentMuzey.text)
+                    share.type = "text/plain"
+                    startActivity(Intent.createChooser(share, "Bólisiw"))
+                    true
+                }
+                R.id.favorite -> {
+                    currentMuzey.isFavorite = 1 - currentMuzey.isFavorite
+                    dao.updateMuzey(currentMuzey)
+                    if (currentMuzey.isFavorite == 0){
+                        it.setIcon(R.drawable.ic_baseline_bookmark_border_24)
+                    }else{
+                        it.setIcon(R.drawable.ic_baseline_bookmark_24)
+                    }
+                    true
+                }
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
 
     }
 }

@@ -53,6 +53,12 @@ interface NationalBaseDao {
     @Query("SELECT * FROM Muzeyler WHERE name like :word")
     fun searchMuzeyByName(word: String) : List<Muzeyler>
 
+    @Query("SELECT * FROM Muzeyler WHERE isFavorite = 1")
+    fun getFavoriteMuzey(): List<Muzeyler>
+
+    @Update
+    fun updateMuzey(muzeyler: Muzeyler)
+
     //Tábiyat
     @Query("SELECT * FROM Tabiyat")
     fun getTabiyat() : List<Tabiyat>
@@ -62,4 +68,10 @@ interface NationalBaseDao {
 
     @Query("SELECT * FROM Tabiyat WHERE name like :word")
     fun searchTabiyatByName(word: String) : List<Tabiyat>
+
+    @Query("SELECT * FROM Tabiyat WHERE isFavorite = 1")
+    fun getFavoriteTabiyat(): List<Tabiyat>
+
+    @Update
+    fun updateTabiyat(tabiyat: Tabiyat)
 }
