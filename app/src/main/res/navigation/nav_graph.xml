@@ -47,11 +47,11 @@
         android:label="MuzeyFragment"
         tools:layout="@layout/fragment_milliy">
         <action
-            android:id="@+id/action_menu_museum_to_muzeyDetailFragment"
-            app:destination="@id/muzeyDetailFragment" />
-        <action
             android:id="@+id/action_menu_museum_to_infoFragment"
             app:destination="@id/infoFragment" />
+        <action
+            android:id="@+id/action_menu_museum_to_muzeyDetailFragment"
+            app:destination="@id/muzeyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeDetailFragment"
@@ -94,17 +94,17 @@
             android:id="@+id/action_menu_like_to_tabiyatFavoriteFragment"
             app:destination="@id/tabiyatFavoriteFragment" />
         <action
+            android:id="@+id/action_menu_like_to_muzeyDetailFragment"
+            app:destination="@id/muzeyDetailFragment" />
+        <action
+            android:id="@+id/action_menu_like_to_tabiyatDetailFragment"
+            app:destination="@id/tabiyatDetailFragment" />
+        <action
             android:id="@+id/action_menu_like_to_homeDetailFragment"
             app:destination="@id/homeDetailFragment" />
         <action
             android:id="@+id/action_menu_like_to_milliyDetailFragment"
             app:destination="@id/milliyDetailFragment" />
-        <action
-            android:id="@+id/action_menu_like_to_tabiyatDetailFragment"
-            app:destination="@id/tabiyatDetailFragment" />
-        <action
-            android:id="@+id/action_menu_like_to_muzeyDetailFragment"
-            app:destination="@id/muzeyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/arxeologiyaFavorite"

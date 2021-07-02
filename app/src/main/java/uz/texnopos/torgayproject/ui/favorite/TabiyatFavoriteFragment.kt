@@ -16,16 +16,14 @@ import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 import uz.texnopos.torgayproject.ui.detail.TabiyatDetailFragment
 import uz.texnopos.torgayproject.ui.tabiyat.TabiyatListAdapter
 
-class TabiyatFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemClickListener {
+class TabiyatFavoriteFragment(private val parentNavController: NavController) : Fragment(R.layout.fragment_favorite),TorgayItemClickListener {
 
     private lateinit var dao: NationalBaseDao
-    private var navController: NavController? = null
     private val adapter = TabiyatListAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dao = TorgayDataBase.getInstance(requireContext()).dao()
-        navController = NavHostFragment.findNavController(this)
         recyclerViewFav.addItemDecoration(MarginItemDecoration(16))
         recyclerViewFav.adapter = adapter
         setData()
@@ -37,6 +35,6 @@ class TabiyatFavoriteFragment : Fragment(R.layout.fragment_favorite),TorgayItemC
 
     override fun onItemClickListener(id: Int) {
         val bundle = bundleOf(TabiyatDetailFragment.Tabiyat_Id to id)
-        navController!!.navigate(R.id.action_menu_nature_to_tabiyatDetailFragment,bundle)
+        parentNavController.navigate(R.id.action_menu_like_to_tabiyatDetailFragment,bundle)
     }
 }
