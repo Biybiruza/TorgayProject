@@ -68,13 +68,8 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                     true
                 }
                 R.id.favorite -> {
-                    currentHome.isFavorite = 1 - currentHome.isFavorite
-                    dao.updateMilliy(currentHome)
-                    if (currentHome.isFavorite == 1) {
-                        it.setIcon(R.drawable.ic_baseline_bookmark_24)
-                    } else {
-                        it.setIcon(R.drawable.ic_baseline_bookmark_border_24)
-                    }
+                    favorite()
+                    dao.updateArxeologiya(currentHome)
                     true
                 }
                 else -> {
@@ -82,5 +77,17 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
                 }
             }
         }
+    }
+
+    private fun favorite(){
+        currentHome.isFavorite = 1 - currentHome.isFavorite
+        dao.updateArxeologiya(currentHome)
+        toolBarDetail.menu.findItem(R.id.favorite).setIcon(
+            if (currentHome.isFavorite == 1) {
+                R.drawable.ic_baseline_bookmark_24
+            } else {
+                R.drawable.ic_baseline_bookmark_border_24
+            }
+        )
     }
 }

@@ -25,7 +25,7 @@ interface NationalBaseDao {
     fun getFavoriteArxeologiya() : List<Arxeologiya>
 
     @Update
-    fun updateMilliy(arxeologiya: Arxeologiya)
+    fun updateArxeologiya(arxeologiya: Arxeologiya)
 
     //Milliy
     @Query("SELECT * FROM Milliy")
