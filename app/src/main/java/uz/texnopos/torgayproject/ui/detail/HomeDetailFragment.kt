@@ -28,6 +28,7 @@ class HomeDetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dao = TorgayDataBase.getInstance(requireContext()).dao()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

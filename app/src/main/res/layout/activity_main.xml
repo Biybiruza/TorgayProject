@@ -56,7 +56,7 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#4F73F3"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@color/colorAccent"
         app:itemTextColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
