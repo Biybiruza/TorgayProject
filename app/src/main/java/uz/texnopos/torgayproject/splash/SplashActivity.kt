@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        window.apply {
+        /*window.apply {
             setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN)
             setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
 
@@ -32,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
         splashActivity.setMinAndMaxFrame(0,375)
-        splashActivity.playAnimation()
+        splashActivity.playAnimation()*/
 
         Handler().postDelayed({
             val intent = Intent(this, MainActivity::class.java)
