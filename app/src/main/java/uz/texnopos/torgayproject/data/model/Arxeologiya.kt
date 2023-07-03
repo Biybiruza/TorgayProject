@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import uz.texnopos.torgayproject.data.dao.NationalBaseDao
 
 @Entity(tableName = "Arxeologiya")
-data class Arxeologiya(
+data class  Arxeologiya(
     @PrimaryKey val id : Int,
     @ColumnInfo(name = "name") val name:String,
     @ColumnInfo(name = "text") val text:String,

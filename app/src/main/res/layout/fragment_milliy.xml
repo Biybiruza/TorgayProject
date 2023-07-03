@@ -22,6 +22,39 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolBarAction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/ic_group_323" />
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_below="@id/img1"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_group_323" />
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_below="@id/img2"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_group_323" />
+
+    </RelativeLayout>
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/search"
         android:layout_width="0dp"
@@ -49,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

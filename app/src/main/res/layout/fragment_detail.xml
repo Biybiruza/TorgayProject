@@ -22,6 +22,32 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBarDetail">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/ic_group_323" />
+
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@id/img1"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_group_323" />
+
+    </RelativeLayout>
+
     <ScrollView
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.detail.HomeDetailFragment"
