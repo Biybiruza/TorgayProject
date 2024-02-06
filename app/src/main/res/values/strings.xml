@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="search">Search</string>
+    <string name="info">Bul programma Qaraqalpaqstannıń mádeniy hám tábiyiy
+        reńbe-reńligin kórsetiwde hámde regiondı úyreniwge hám izertlewge bolǵan
+        qızıǵıwshılıǵın arttırıwǵa járdem beredi.\n\n
+        Maǵlıwmatlar <a href="http://karakalpakstan.travel">karakalpakstan.travel</a> saytınan
+        alındı.\n\nBul kishigırım programmanı
+        <a href="https://t.me/texnopos">Texnopos IT</a> mektep oqıwshıları <b>Sabitova Jansaule</b> hám
+        <b>Ibashova Biybiruza</b> tárepinen islep shıǵıldı</string>
+    <string name="empty">Saylandılar bos</string>
+    <string name="todo">TODO</string>
 </resources>
